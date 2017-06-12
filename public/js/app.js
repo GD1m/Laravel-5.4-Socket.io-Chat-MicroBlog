@@ -3282,9 +3282,9 @@ window.app = new Vue({
             $('.button-tooltip-wrapper').hover(function (e) {
                 var tooltip = $(this).next('.tooltip');
 
-                self.initTooltipPosition($(this), tooltip);
-
                 tooltip.addClass('in').show();
+
+                self.initTooltipPosition($(this), tooltip);
             }, function () {
                 $(this).next('.tooltip').removeClass('in').hide();
             });
@@ -3301,11 +3301,6 @@ window.app = new Vue({
 
             leftOffset = buttonOffset.left - tooltip.width() / 2 + button.width() / 2;
             topOffset = buttonOffset.top + button.height();
-
-            tooltip.offset({
-                left: 0,
-                top: 0
-            });
 
             tooltip.offset({
                 left: leftOffset,
