@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'no_base',
         'passwords' => 'users',
     ],
 
@@ -36,9 +36,9 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+        'no_base' => [
+            'driver' => 'no_base',
+            'provider' => 'no_base',
         ],
 
         'api' => [
@@ -69,7 +69,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'no_base' => [
+            'driver' => 'no_base',
+            'model' => App\User::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

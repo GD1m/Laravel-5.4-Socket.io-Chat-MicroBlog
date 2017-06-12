@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler
 {
@@ -27,7 +28,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -38,20 +39,54 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
     public function render($request, Exception $exception)
     {
+        $isTokenMismatchException = $exception instanceof TokenMismatchException;
+
+        if ($request->wantsJson()) {
+            $error = 'Sorry, something went wrong.';
+
+            if ($isTokenMismatchException) {
+                $error = 'Session was expired. Try to refresh a page.';
+            }
+
+            $response = [
+                'error' => $error,
+            ];
+
+            if (config('app.debug')) {
+                $response = $response + [
+                        'exception' => get_class($exception),
+                        'message' => $exception->getMessage(),
+                        'file' => $exception->getFile(),
+                        'line' => $exception->getLine(),
+                        'trace' => $exception->getTrace()
+                    ];
+            }
+
+            $status = 400;
+
+            if ($this->isHttpException($exception)) {
+                $status = $exception->getStatusCode();
+            }
+
+            return response()->json($response, $status);
+        } elseif ($isTokenMismatchException) {
+            return redirect('login');
+        }
+
         return parent::render($request, $exception);
     }
 
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Auth\AuthenticationException $exception
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)

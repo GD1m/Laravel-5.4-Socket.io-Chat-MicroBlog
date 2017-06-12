@@ -1,0 +1,80 @@
+.fixed-panel {
+    min-height: 500px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.remove-message {
+    color: #ff0000;
+}
+
+.message-content {
+    word-break: break-all;
+}
+
+.liked-by {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #bce8f1;
+    z-index: 64363;
+    position: absolute;
+    display: none;
+}
+
+.button-tooltip-wrapper {
+    display: inline-block;
+}
+.button-tooltip-wrapper .btn[disabled] {
+    /* don't let button block mouse events from reaching wrapper */
+    pointer-events: none;
+}
+.button-tooltip-wrapper.disabled {
+    cursor: not-allowed;
+}
+
+.tooltip {
+    opacity: 0.8;
+}
+
+.tooltip-inner {
+    max-width: none;
+    padding: 3px 13px;
+}
+
+.tooltip ol {
+    padding-left: 15px;
+}
+.like-item {
+    white-space: nowrap;
+    text-align: left;
+}
+
+.attachments-button {
+    float: left;
+    height: 34px;
+}
+
+.compress-images-button, .add-new-link-button {
+    margin-top: -25px;
+}
+
+.dropzone .dz-preview .dz-error-message {
+    top: 10px !important;
+    left: initial !important;
+    right: -25px !important;
+}
+
+.youtube-item, .image-item {
+    list-style-type: none;
+    float: left;
+    margin: 10px;
+}
+
+.youtube-item-remove-button {
+    /*position: absolute;*/
+}
+
+.attachment-image {
+    max-width: 150px;
+    max-height: 150px;
+}

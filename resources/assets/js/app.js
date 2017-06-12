@@ -15,19 +15,4 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
-
-import Echo from "laravel-echo";
-
-var echo = window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: 'http://localhost:3000'
-});
-
-echo.channel('test-channel').listen('EventName', function (d) {
-    console.log('data', d);
-});
+require('./chat');
