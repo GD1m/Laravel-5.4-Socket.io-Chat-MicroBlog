@@ -34,6 +34,6 @@
 
 + Start Socket.io server:
 
-`` laravel-echo-server-start ``
+`` laravel-echo-server start ``
 
 + Configure your webserver to <root_folder>/public (there is entry point)

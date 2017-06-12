@@ -104,7 +104,6 @@ window.app = new Vue({
         joinOnlineChannelAndPrivateChannel: function () {
             Echo.join('chat-channel-online')
                 .here((users) => {
-                    console.table(users);
                     this.initUsers(users);
 
                     // Private chat channel (uses authUser object)
@@ -141,7 +140,7 @@ window.app = new Vue({
                 });
         },
         joinPrivateChatChannel: function () {
-            Echo.private(`chat-channel.${this.authUser.id}`);
+            //Echo.private(`chat-channel.${this.authUser.id}`);
             // private listeners here
         },
 

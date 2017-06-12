@@ -5353,7 +5353,7 @@ window.app = new Vue({
             });
         },
         joinPrivateChatChannel: function joinPrivateChatChannel() {
-            Echo.private('chat-channel.' + this.authUser.id);
+            //Echo.private(`chat-channel.${this.authUser.id}`);
             // private listeners here
         },
 

@@ -7,7 +7,6 @@ use App\Exceptions\BaseException;
 use App\Exceptions\InvalidClassException;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Jenssegers\Model\Model;
 
 class NoDatabaseUserProvider implements \Illuminate\Contracts\Auth\UserProvider
 {
