@@ -2,7 +2,7 @@
 
 ## Requirements (tested with)
 
-+ PHP 7.1+<
++ PHP 7.1
 + MySqL 5.7
 + Redis 3.2
 + Node.js 3.10
